@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "123686958554",
+    "firebase_url": "https://icrop-mobdev101-default-rtdb.firebaseio.com",
+    "project_id": "icrop-mobdev101",
+    "storage_bucket": "icrop-mobdev101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123686958554:android:ec0d67d3f14eb6b0ad3ce3",
+        "android_client_info": {
+          "package_name": "com.example.icrop_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123686958554-adg79gjd92i2b5u1h0nnah0u3f22caad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Z_3uRmDeFJcYpW8NFXZscMAf2UjJx1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123686958554-adg79gjd92i2b5u1h0nnah0u3f22caad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
