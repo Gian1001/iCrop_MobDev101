@@ -13,16 +13,10 @@
         android:theme="@style/Theme.Icrop_project"
         tools:targetApi="31">
         <activity
-            android:name=".SliderPage_3"
-            android:exported="false" />
-        <activity
-            android:name=".SliderPage_2"
+            android:name=".SliderPage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SliderPage"
             android:exported="false" />
         <activity
             android:name=".Login"
