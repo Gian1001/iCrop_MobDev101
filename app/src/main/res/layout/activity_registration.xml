@@ -42,6 +42,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:hint="Enter password"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -85,7 +86,7 @@
         android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_register"
+        android:text="@string/registerText"
         android:layout_gravity="center"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_semibold"
@@ -101,7 +102,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:fontFamily="@font/poppins_semibold"
-        android:text="@string/click_here_to_login"
+        android:text="@string/clickToLoginText"
         android:textColor="#55A935"
         android:textSize="16sp"
         android:layout_marginTop="20dp">

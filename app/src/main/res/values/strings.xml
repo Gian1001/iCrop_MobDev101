@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">icrop_project</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="loginText">Sign in</string>
+    <string name="clickToRegisterText">Click here to Register an account</string>
+    <string name="logoutText">Logout</string>
+    <string name="clickToLoginText">Click here to Login into your account</string>
+    <string name="registerText">Register</string>
 </resources>

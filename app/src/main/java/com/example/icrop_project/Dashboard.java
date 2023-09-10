@@ -1,4 +1,4 @@
-package com.example.icrop;
+package com.example.icrop_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
