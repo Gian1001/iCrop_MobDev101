@@ -12,17 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Icrop_project"
         tools:targetApi="31">
-        <activity android:name=".MainActivity"
-            android:exported="false"/>
-        <activity android:name=".SplashScreen2"
-            android:exported="false"/>
-        <activity android:name=".Login"
-            android:exported="false"/>
-        <activity android:name=".Registration"
-            android:exported="false"/>
-        <activity android:name=".Dashboard"
-            android:exported="false"/>
-
+        <activity
+            android:name=".SplashScreen4"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen3"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen2"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".Registration"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">

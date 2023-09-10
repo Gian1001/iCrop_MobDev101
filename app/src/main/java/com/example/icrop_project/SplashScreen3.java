@@ -6,16 +6,16 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
 
-public class SplashScreen2 extends AppCompatActivity {
+public class SplashScreen3 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen2);
+        setContentView(R.layout.activity_splash_screen3);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen2.this, SplashScreen3.class);
+                Intent intent = new Intent(SplashScreen3.this, SplashScreen4.class);
                 startActivity(intent);
                 finish();
             }

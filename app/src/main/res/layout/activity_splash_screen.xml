@@ -8,12 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreen">
 
+    <!-- Splash screen content -->
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:gravity="center_horizontal"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="290dp"
-        app:srcCompat="@drawable/icrop_logo_v2" />
+        android:id="@+id/splashImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icrop_logo_v2" />
 
 </RelativeLayout >
