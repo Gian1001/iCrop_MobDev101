@@ -29,29 +29,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         swapFragment(new HomeFragment());
 
-    binding.bottomNav.setOnItemSelectedListener(item -> {
+        binding.bottomNav.setOnItemSelectedListener(item -> {
 
-        int itemId = item.getItemId();
+            int itemId = item.getItemId();
 
-        if (itemId == R.id.homeTab) {
-            swapFragment(new HomeFragment());
-        } else if (itemId == R.id.informationTab) {
-            swapFragment(new ListFragment());
-        } else if (itemId == R.id.manageTab){
-            swapFragment(new ManageFragment());
-        }
-        return true;
-    });
+            if (itemId == R.id.homeTab) {
+                swapFragment(new HomeFragment());
+            } else if (itemId == R.id.informationTab) {
+                swapFragment(new ListFragment());
+            } else if (itemId == R.id.manageTab) {
+                swapFragment(new ManageFragment());
+            } else if (itemId == R.id.notifTab) {
+                swapFragment(new NotifFragment());
+            } else if (itemId == R.id.profileTab) {
+                swapFragment(new ProfileFragment());
+            }
+
+            return true;
+        });
     }
 
 
-    private void swapFragment(Fragment fragment){
-
+    private void swapFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
-
     }
 
 }

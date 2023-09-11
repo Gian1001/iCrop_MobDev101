@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="@drawable/ss2"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".SliderPage">
 
-    <TextView
-        android:id="@+id/quote"
-        android:layout_width="match_parent"
+    <!-- ViewPager as Background -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="423dp"
+        android:layout_height="813dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-20dp"/>
+
+    <!-- Vertical Indicator -->
+    <LinearLayout
+        android:id="@+id/indicatorLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginBottom="150dp">
+    </LinearLayout>
+
+    <!-- Next Button -->
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Farm with ease"
-        android:textColor="#fff"
-        android:textSize="60sp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="120dp">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/quote2"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="70dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:gravity="right"
-        android:text="iCrop aims to guide you through your urban farming journey!"
-        android:textColor="#fff"
-        android:textSize="25sp">
-
-    </TextView>
-
-</RelativeLayout>
+        android:textColor="@color/white"
+        android:backgroundTint="#F29F05"
+        android:text="Get Started"
+        android:paddingHorizontal="40dp"
+        />
+</FrameLayout>
