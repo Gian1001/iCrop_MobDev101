@@ -59,4 +59,7 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
 
     implementation ("androidx.viewpager:viewpager:1.0.0")
+
+    implementation ("com.google.code.gson:gson:2.8.8")
+
 }

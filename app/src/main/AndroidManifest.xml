@@ -45,6 +45,15 @@
             android:name=".Dashboard"
             android:exported="false" />
         <activity
+            android:name=".CropPlanting"
+            android:exported="false" />
+        <activity
+            android:name=".SoilPlanning"
+            android:exported="false" />
+        <activity
+            android:name=".OTPpage"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
