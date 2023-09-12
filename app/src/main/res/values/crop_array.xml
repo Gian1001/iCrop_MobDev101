@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dropdown_options">
+        <item>Kangkong (Water Spinach)</item>
+        <item>Talong (Eggplant)</item>
+        <item>Sitaw (String Beans)</item>
+        <item>Kalabasa (Squash)</item>
+        <item>Mustasa (Mustard Greens)</item>
+        <item>Okra</item>
+        <item>Pechay (Chinese Cabbage)</item>
+        <item>Ampalaya (Bitter Melon)</item>
+        <item>Tomatoes</item>
+        <item>Siling Labuyo (Bird\'s Eye Chili)</item>
+        <item>Basil</item>
+        <item>Cilantro (Coriander)</item>
+        <item>Oregano</item>
+        <item>Mint</item>
+        <item>Pandan</item>
+        <item>Tanglad (Lemongrass)</item>
+        <item>Papaya</item>
+        <item>Banana</item>
+        <item>Calamansi (Philippine Lime)</item>
+        <item>Guava</item>
+        <item>Kamias (Bilimbi)</item>
+        <item>Malunggay (Moringa)</item>
+        <item>Saging na Saba (Cardaba Banana)</item>
+        <item>Kamote (Sweet Potato)</item>
+        <item>Singkamas (Jicama)</item>
+        <item>Gabi (Taro)</item>
+        <item>Lettuce</item>
+        <item>Arugula</item>
+        <item>Swiss Chard</item>
+        <item>Others</item>
+    </string-array>
+</resources>

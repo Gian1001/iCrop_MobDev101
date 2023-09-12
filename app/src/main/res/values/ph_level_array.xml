@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ph_level_options">
+        <item>4.5</item>
+        <item>5.0</item>
+        <item>5.5</item>
+        <item>6.0</item>
+        <item>7.0</item>
+        <item>7.5</item>
+        <item>8.0</item>
+        <item>8.5</item>
+        <item>9.0</item>
+    </string-array>
+    <string-array name="soil_textures">
+        <item>Sand</item>
+        <item>Loamy Sand</item>
+        <item>Sandy Loam</item>
+        <item>Sandy Clay Loam</item>
+        <item>Loam</item>
+        <item>Silt Loam</item>
+        <item>Silt</item>
+        <item>Silty Clay Loam</item>
+        <item>Clay Loam</item>
+        <item>Sandy Clay</item>
+        <item>Silty Clay</item>
+    </string-array>
+</resources>

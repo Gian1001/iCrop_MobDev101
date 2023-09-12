@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CropPlanting">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crop Type:"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"/>
+    <Spinner
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/cropType"
+        android:entries="@array/dropdown_options"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Planting Date:"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:text="add Planting date"
+        android:layout_marginTop="80dp"
+        android:onClick="openDatePicker"
+        android:id="@+id/plantingButton"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expected Harvest:"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:text="add harvest date"
+        android:layout_marginTop="130dp"
+        android:id="@+id/harvestDate"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "Add Image:"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:text="upload image"
+        android:layout_marginTop="180dp"
+        android:id="@+id/addImage"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="300dp"
+        android:id="@+id/showImage"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="500dp"
+        android:text="Submit Report"
+        android:id="@+id/submitPlantReport"/>
+
+
+</RelativeLayout>

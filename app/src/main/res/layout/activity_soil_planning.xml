@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SoilPlanning">
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soil Type:"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"/>
+
+    <Spinner
+        android:id="@+id/soilSpinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="45dp"
+        android:entries="@array/soil_textures" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Texture: "
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"/>
+    <EditText
+        android:id="@+id/soilTexture"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="80dp"
+        android:hint="Soil proportions"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ph Level"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"/>
+    <Spinner
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="145dp"
+        android:id="@+id/ph_levels"
+        android:entries="@array/ph_level_options"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wetting Cycle"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"/>
+    <EditText
+        android:id="@+id/wettingCycle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="180dp"
+        android:hint="Days"
+        android:inputType="number"
+        android:maxLength="3"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:text="Submit Report"
+        android:id="@+id/submitSoilReport"
+        android:layout_marginTop="400dp"/>
+
+</RelativeLayout>
