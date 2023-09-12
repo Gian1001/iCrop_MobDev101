@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -94,6 +95,7 @@ public class Login extends AppCompatActivity {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(Login.this,"Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
+                                    Log.e("Authentication", "Authentication failed: " + task.getException());
                                 }
                             }
 
