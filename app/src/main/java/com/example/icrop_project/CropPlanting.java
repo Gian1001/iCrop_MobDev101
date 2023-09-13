@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,7 +32,7 @@ to add din yung editText for others,
 then dialog once oks na yung account
 */
 
-    private DatePickerDialog datePickerDialog;
+    private DatePickerDialog plantingDatePickerDialog, harvestDatePickerDialog;
     private Button dateButton, harvestButton, submitButton, addImageButton;
     private ImageView getImage;
     private Spinner spinnerCrops;
@@ -47,9 +48,12 @@ then dialog once oks na yung account
         initializeViews();
 
         // Initialize date picker
+        // Initialize date picker for planting date
         initDatePicker(R.id.plantingButton);
         initDatePicker(R.id.harvestDate);
+
     }
+
 
     private void initializeViews() {
         // Initialize and set listeners for buttons
@@ -63,7 +67,19 @@ then dialog once oks na yung account
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pushInputs();
+                String selectedCrop = spinnerCrops.getSelectedItem().toString();
+                String getPlantedDate = dateButton.getText().toString();
+                String getSoilDate = harvestButton.getText().toString();
+
+                if (selectedCrop.equals("Select Crop Type")) {
+                    Toast.makeText(getApplicationContext(), "Please select a soil type", Toast.LENGTH_SHORT).show();
+                } else if (getPlantedDate.equals(getPlantedDate)) {
+                    Toast.makeText(getApplicationContext(), "Please input correct planting date", Toast.LENGTH_SHORT).show();
+                } else if (getSoilDate.equals(getSoilDate)) {
+                    Toast.makeText(getApplicationContext(), "Please input correct soil rotation date", Toast.LENGTH_SHORT).show();
+                } else {
+                    pushInputs();
+                }
             }
         });
 
@@ -113,8 +129,13 @@ then dialog once oks na yung account
                 });
     }
 
+
     private void initDatePicker(final int buttonId) {
         final Button dateButton = findViewById(buttonId);
+        final DatePickerDialog datePickerDialog; // Declare as final
+
+        // Initialize datePickerDialog directly
+        datePickerDialog = createDatePickerDialog(buttonId);
 
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +144,9 @@ then dialog once oks na yung account
                 selectedButtonId = buttonId;
             }
         });
+    }
 
+    private DatePickerDialog createDatePickerDialog(int buttonId) {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -141,7 +164,12 @@ then dialog once oks na yung account
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        if (buttonId == R.id.plantingButton) {
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        }
+
+        return datePickerDialog;
     }
 
     private String makeDateString(int day, int month, int year) {
@@ -152,9 +180,9 @@ then dialog once oks na yung account
         return "Jan" + " " + day + " " + year;
     }
 
-    public void openDatePicker(View view) {
-        datePickerDialog.show();
-    }
+//    public void openDatePicker(View view) {
+//        datePickerDialog.show();
+//    }
 
     public static String generateReportId() {
 

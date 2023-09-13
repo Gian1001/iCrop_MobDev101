@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="dropdown_options">
+        <item>Select Crop Type</item>
         <item>Kangkong (Water Spinach)</item>
         <item>Talong (Eggplant)</item>
         <item>Sitaw (String Beans)</item>

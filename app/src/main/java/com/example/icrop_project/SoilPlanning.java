@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,7 +24,7 @@ public class SoilPlanning extends AppCompatActivity {
 
     private Spinner soilTypeSpinner, phLevelSpinner;
     private String selectedSoil, selectedPhLevel;
-    private EditText soilTexture, wettingCycle;
+    private EditText soilTexture, getWettingCycle;
     private Button submitReport;
 
     @Override
@@ -33,7 +34,7 @@ public class SoilPlanning extends AppCompatActivity {
 
         // Initialize views
         soilTexture = findViewById(R.id.soilTexture);
-        wettingCycle = findViewById(R.id.wettingCycle);
+        getWettingCycle = findViewById(R.id.wettingCycle);
         submitReport = findViewById(R.id.submitSoilReport);
 
         // Set up spinners
@@ -43,7 +44,25 @@ public class SoilPlanning extends AppCompatActivity {
         submitReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pushInputs();
+                String selectedSoilType = soilTypeSpinner.getSelectedItem().toString();
+                String soilProportionInputs = soilTexture.getText().toString();
+                String phLevel = phLevelSpinner.getSelectedItem().toString();
+                String wettingCycle = getWettingCycle.getText().toString();
+                String[] soilTextures = getResources().getStringArray(R.array.soil_textures);
+                String[] phLevels = getResources().getStringArray(R.array.ph_level_options);
+
+
+                if(selectedSoilType.equals(soilTextures[0])){
+                    Toast.makeText(getApplicationContext(), "Please select a soil type", Toast.LENGTH_SHORT).show();
+                }else if(soilProportionInputs.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please input a soil texture. See List Tab to view soil types and its textures.", Toast.LENGTH_SHORT).show();
+                }else if(phLevel.equals(phLevels[0])){
+                    Toast.makeText(getApplicationContext(), "Please select a ph Level. See List Tab to view soil types and its textures.", Toast.LENGTH_SHORT).show();
+                }else if(wettingCycle.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please include your wetting cycle.", Toast.LENGTH_SHORT).show();
+                }else{
+                    pushInputs();
+                }
             }
         });
     }
@@ -96,7 +115,7 @@ public class SoilPlanning extends AppCompatActivity {
         reportMap.put("SoilType", selectedSoil);
         reportMap.put("Texture", soilTexture.getText().toString());
         reportMap.put("ph Level", selectedPhLevel);
-        reportMap.put("Wetting Cycle", wettingCycle.getText().toString());
+        reportMap.put("Wetting Cycle", getWettingCycle.getText().toString());
 
         // Generate a report ID
         String reportId = generateReportId();

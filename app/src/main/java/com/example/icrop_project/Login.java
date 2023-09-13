@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
@@ -67,13 +69,21 @@ public class Login extends AppCompatActivity {
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(Login.this, "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(password)){
+                if (!isValidEmail(email)) {
+                    Toast.makeText(Login.this, "Invalid email address", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
                     Toast.makeText(Login.this, "Please enter your password", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
 
@@ -93,8 +103,7 @@ public class Login extends AppCompatActivity {
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(Login.this,"Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    handleAuthenticationFailure(task.getException());
                                     Log.e("Authentication", "Authentication failed: " + task.getException());
                                 }
                             }
@@ -102,5 +111,28 @@ public class Login extends AppCompatActivity {
                         });
             }
         });
+    }
+    private boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+
+    private void handleAuthenticationFailure(Exception exception) {
+        if (exception instanceof FirebaseAuthInvalidCredentialsException) {
+            // Invalid password
+            Toast.makeText(Login.this, "Invalid password.", Toast.LENGTH_SHORT).show();
+        } else if (exception instanceof FirebaseAuthInvalidUserException) {
+            String errorCode = ((FirebaseAuthInvalidUserException) exception).getErrorCode();
+            if ("ERROR_USER_NOT_FOUND".equals(errorCode)) {
+                // No user found with this email
+                Toast.makeText(Login.this, "No user found with this email.", Toast.LENGTH_SHORT).show();
+            } else if ("ERROR_USER_DISABLED".equals(errorCode)) {
+                // User account is disabled
+                Toast.makeText(Login.this, "User account is disabled.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // General authentication error
+            Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
