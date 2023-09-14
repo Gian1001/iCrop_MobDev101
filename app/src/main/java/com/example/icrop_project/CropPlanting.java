@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,6 +26,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.time.LocalTime;
+
 
 public class CropPlanting extends AppCompatActivity {
 /*works pero wala pa validation especially sa date
@@ -31,7 +35,7 @@ to add din yung editText for others,
 then dialog once oks na yung account
 */
 
-    private DatePickerDialog datePickerDialog;
+    private DatePickerDialog plantingDatePickerDialog, harvestDatePickerDialog;
     private Button dateButton, harvestButton, submitButton, addImageButton;
     private ImageView getImage;
     private Spinner spinnerCrops;
@@ -47,9 +51,12 @@ then dialog once oks na yung account
         initializeViews();
 
         // Initialize date picker
+        // Initialize date picker for planting date
         initDatePicker(R.id.plantingButton);
         initDatePicker(R.id.harvestDate);
+
     }
+
 
     private void initializeViews() {
         // Initialize and set listeners for buttons
@@ -63,7 +70,17 @@ then dialog once oks na yung account
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pushInputs();
+                String selectedCrop = spinnerCrops.getSelectedItem().toString();
+                String getPlantedDate = dateButton.getText().toString();
+                String getSoilDate = harvestButton.getText().toString();
+
+                if (selectedCrop.equals("Select Crop Type")) {
+                    Toast.makeText(getApplicationContext(), "Please select a soil type", Toast.LENGTH_SHORT).show();
+                } else if (getSoilDate.equals(getTodaysDate())) {
+                    Toast.makeText(getApplicationContext(), "Please input correct soil rotation date", Toast.LENGTH_SHORT).show();
+                } else {
+                    pushInputs();
+                }
             }
         });
 
@@ -95,12 +112,20 @@ then dialog once oks na yung account
     }
 
     private void pushInputs() {
+
+        String getUserID = accessUserID();
+        String reportId = generateReportId();
+        String getTimeReported = getCurrentTime();
+
+
         Map<String, Object> reportMap = new HashMap<>();
         reportMap.put("CropType", selectedCropType);
         reportMap.put("datePlanted", harvestButton.getText().toString());
         reportMap.put("dateHarvest", dateButton.getText().toString());
+        reportMap.put("userID", getUserID.toString());
+        reportMap.put("reportID", reportId);
+        reportMap.put("DateTimeReported", getTimeReported);
 
-        String reportId = generateReportId();
 
         FirebaseDatabase.getInstance().getReference().child("CropPlanner").child(reportId).setValue(reportMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -113,8 +138,13 @@ then dialog once oks na yung account
                 });
     }
 
+
     private void initDatePicker(final int buttonId) {
         final Button dateButton = findViewById(buttonId);
+        final DatePickerDialog datePickerDialog; // Declare as final
+
+        // Initialize datePickerDialog directly
+        datePickerDialog = createDatePickerDialog(buttonId);
 
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +153,9 @@ then dialog once oks na yung account
                 selectedButtonId = buttonId;
             }
         });
+    }
 
+    private DatePickerDialog createDatePickerDialog(int buttonId) {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -141,7 +173,12 @@ then dialog once oks na yung account
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        if (buttonId == R.id.plantingButton) {
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        }
+
+        return datePickerDialog;
     }
 
     private String makeDateString(int day, int month, int year) {
@@ -150,10 +187,6 @@ then dialog once oks na yung account
             return months[month - 1] + " " + day + " " + year;
         }
         return "Jan" + " " + day + " " + year;
-    }
-
-    public void openDatePicker(View view) {
-        datePickerDialog.show();
     }
 
     public static String generateReportId() {
@@ -166,5 +199,23 @@ then dialog once oks na yung account
         int randomNumber = random.nextInt(10000); // You can adjust the range as needed
 
         return timestamp + String.format("%04d", randomNumber);
+    }
+
+    public String getCurrentTime() {
+        // Get the current time
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY); // 24-hour format
+        int minute = calendar.get(Calendar.MINUTE);
+
+        // Format the time as "HH:MM"
+        String formattedTime = String.format("%02d:%02d", hour, minute);
+
+        return formattedTime;
+    }
+
+    private String accessUserID(){
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return preferences.getString("userID", ""); // "" is the default value if userID is not found
+
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ph_level_options">
+        <item>Select pH level</item>
         <item>4.5</item>
         <item>5.0</item>
         <item>5.5</item>
@@ -12,6 +13,7 @@
         <item>9.0</item>
     </string-array>
     <string-array name="soil_textures">
+        <item>Select Soil Texture</item>
         <item>Sand</item>
         <item>Loamy Sand</item>
         <item>Sandy Loam</item>

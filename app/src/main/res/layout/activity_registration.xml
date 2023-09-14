@@ -30,7 +30,9 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="15dp"
+            android:drawablePadding="10dp"
             android:layout_marginBottom="15dp"
+            android:drawableLeft="@drawable/user"
             android:fontFamily="@font/poppins_semibold"
             >
         </com.google.android.material.textfield.TextInputEditText>
@@ -39,13 +41,37 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
-            android:hint="Enter password"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:drawableLeft="@drawable/lock"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="Enter password"
+            android:inputType="textPassword"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contact"
+            android:hint="Enter contact number"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:maxLength="11"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:drawableStart="@drawable/baseline_phone_android_24"
+            android:drawablePadding="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="20dp"
@@ -53,25 +79,6 @@
             >
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
-
-
-
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:id="@+id/contact"-->
-<!--            android:hint="Enter contact number"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="15dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_marginEnd="15dp"-->
-<!--            android:layout_marginBottom="20dp"-->
-<!--            android:fontFamily="@font/poppins_semibold"-->
-<!--            >-->
-<!--        </com.google.android.material.textfield.TextInputEditText>-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
     
     <ProgressBar
         android:id="@+id/progressBar"
@@ -116,6 +123,13 @@
         android:layout_height="215dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/circle_group"
-        android:layout_marginTop="170dp"/>
+        android:layout_marginTop="190dp"/>
 
 </LinearLayout>
+
+
+    <!--
+    android:drawableLeft="@drawable/user"
+    android:drawableLeft="@drawable/user"
+
+     -->
