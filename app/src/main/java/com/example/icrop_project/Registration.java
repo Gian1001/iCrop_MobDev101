@@ -36,6 +36,7 @@ public class Registration extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textView;
     private static final int OTP_REQUEST_CODE = 1;
+    public String getOTP;
 
 
     @Override
@@ -61,6 +62,7 @@ public class Registration extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
         editContactValue = findViewById(R.id.contact);
+
 
 
         textView.setOnClickListener(new View.OnClickListener() {
@@ -93,11 +95,18 @@ public class Registration extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     return;
                 }
+                String generatedOTP = generateOTP(); // Generate OTP
+
+                OTPData.getInstance().setGeneratedOTP(generatedOTP);
+
                 SendMessageTask sendMessageTask = new SendMessageTask();
-                sendMessageTask.execute(generateOTP());
+                sendMessageTask.execute(generatedOTP, editContactValue.getText().toString());
 
                 Intent otpIntent = new Intent(Registration.this, OTPpage.class);
+
+
                 startActivityForResult(otpIntent, OTP_REQUEST_CODE);
+
             }
         });
     }
@@ -127,6 +136,7 @@ public class Registration extends AppCompatActivity {
                                     } else {
                                         // Registration failed
                                         Toast.makeText(Registration.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                        return;
                                     }
                                 }
                             });
@@ -172,7 +182,7 @@ public class Registration extends AppCompatActivity {
                 });
     }
 
-    public String accessUserID(){
+    public String accessUserID() {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         return preferences.getString("userID", ""); // "" is the default value if userID is not found
 

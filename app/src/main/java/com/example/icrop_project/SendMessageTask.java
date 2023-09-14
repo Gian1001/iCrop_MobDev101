@@ -1,5 +1,7 @@
 package com.example.icrop_project;
 
+import static com.example.icrop_project.OTPpage.generateOTP;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -18,9 +20,9 @@ public class SendMessageTask extends AsyncTask<String, Void, String>  {
     protected String doInBackground(String... params) {
         String apiUrl = "https://semaphore.co/api/v4/otp";
         String apiKey = "bdc45e3a5086805d089c6ba42acdb667";
-        String mobileNumber = "09294423749";
         String otpMessage = "NEVER SHARE YOUR OTP especially on social media and SMS or email links. ";
         String otpValue =  params[0];
+        String phoneNumber = params[1];
 
 
         try {
@@ -30,7 +32,7 @@ public class SendMessageTask extends AsyncTask<String, Void, String>  {
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setDoOutput(true);
 
-            String postData = "apikey=" + apiKey + "&number=" + mobileNumber + "&message=" + otpMessage + "&code=" + otpValue;
+            String postData = "apikey=" + apiKey + "&number=" + phoneNumber + "&message=" + otpMessage + "&code=" + otpValue;
 
             OutputStream os = connection.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");

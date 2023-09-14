@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,17 +33,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class OTPpage extends AppCompatActivity {
 
-    TextView textbox;
+
     private Button button;
     int currentHour, currentMinute, currentSecond;
     private boolean isButtonPressed = false;
 
     private EditText[] editTexts = new EditText[6];
     private int currentEditText = 0;
+    EditText firstDigit, secondDigit, thirdDigit, fourthDigit, fifthDigit, sixthDigit;
 
+    private String concatDigits, OTPValue;
 
 
     Calendar calendar = Calendar.getInstance();
@@ -52,7 +57,12 @@ public class OTPpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otppage);
 
-
+        firstDigit = findViewById(R.id.firstNumber);
+        secondDigit = findViewById(R.id.secondNumber);
+        thirdDigit = findViewById(R.id.thirdNumber);
+        fourthDigit = findViewById(R.id.fourthNumber);
+        fifthDigit = findViewById(R.id.fifthNumber);
+        sixthDigit = findViewById(R.id.sixthNumber);
 
         button = findViewById(R.id.testButton);
         currentHour = calendar.get(Calendar.HOUR_OF_DAY); // 24-hour format
@@ -71,25 +81,36 @@ public class OTPpage extends AppCompatActivity {
             attachTextWatcher(editTexts[i], i);
         }
 
-        // Set an onClickListener for the "test button"
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isButtonPressed = true;  // Change the value of the boolean variable
+                // Concatenate the digits from all EditText fields
+                concatDigits = firstDigit.getText().toString() + secondDigit.getText().toString() + thirdDigit.getText().toString() +
+                        fourthDigit.getText().toString() + fifthDigit.getText().toString() + sixthDigit.getText().toString();
 
-                // Create an intent to pass the value back to the registration page
-                Intent intent = new Intent();
-                intent.putExtra("otpVerification", isButtonPressed);
 
-                // Set the result code and the intent with data
-                setResult(RESULT_OK, intent);
+                String generatedOTP = OTPData.getInstance().getGeneratedOTP();
 
-                // Close the OTP page and go back to the registration page
-                finish();
+                if (concatDigits.equals(generatedOTP)) {
+                    // OTP is correct, proceed with registration
+                    isButtonPressed = true;  // Change the value of the boolean variable
+
+                    // Create an intent to pass the value back to the registration page
+                    Intent intent = new Intent();
+                    intent.putExtra("otpVerification", isButtonPressed);
+
+                    // Set the result code and the intent with data
+                    setResult(RESULT_OK, intent);
+
+                    // Close the OTP page and go back to the registration page
+                    finish();
+                } else {
+                    // OTP is incorrect, show an error message
+                    Toast.makeText(OTPpage.this, "Incorrect OTP, please try again.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
 
 
@@ -99,8 +120,8 @@ public class OTPpage extends AppCompatActivity {
         StringBuilder otp = new StringBuilder();
 
         for (int i = 0; i < 6; i++) {
-            int randomDigit = secureRandom.nextInt(10); // Generate a random digit (0-9)
-            otp.append(randomDigit); // Append the digit to the OTP
+            int randomDigit = secureRandom.nextInt(10);
+            otp.append(randomDigit);
         }
 
         return otp.toString();
