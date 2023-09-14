@@ -59,7 +59,9 @@
         android:layout_marginStart="13dp"
         android:layout_marginTop="100dp"
         android:inputType="number"
-        android:maxLength="1" />
+        android:maxLength="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="150dp"
@@ -69,13 +71,6 @@
         android:text="test button"
         android:id="@+id/testButton"/>
 
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="-250dp"
-        android:text="test button"
-        android:id="@+id/testBox"/>
 
 
 
