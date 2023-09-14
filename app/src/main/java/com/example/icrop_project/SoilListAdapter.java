@@ -1,6 +1,7 @@
 package com.example.icrop_project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,20 @@ public class SoilListAdapter extends RecyclerView.Adapter<SoilListAdapter.SoilIn
 
     }
 
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    private SoilListAdapter.OnItemClickListener listener;
+
+    public SoilListAdapter(Context context, ArrayList<SoilData> soilDataArrayList, OnItemClickListener listener){
+        this.context = context;
+        this.soilData = soilDataArrayList;
+        this.listener = listener;
+    }
+
+
+
     @NonNull
     @Override
     public SoilListAdapter.SoilInfoListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,6 +47,8 @@ public class SoilListAdapter extends RecyclerView.Adapter<SoilListAdapter.SoilIn
         SoilData list = soilData.get(position);
         holder.name.setText(list.getName());
 //        holder.best_crops.setText(list.getBest_crops());
+
+        holder.model = list;
     }
 
     @Override
@@ -41,13 +58,21 @@ public class SoilListAdapter extends RecyclerView.Adapter<SoilListAdapter.SoilIn
 
     public class SoilInfoListViewHolder extends  RecyclerView.ViewHolder {
         TextView best_crops, common_issues, description, name, nutrient_content, organic_matter_content, ph_range;
-
+        SoilData model;
         public SoilInfoListViewHolder(@NonNull View itemView){
             super(itemView);
 
             name = itemView.findViewById(R.id.soilInfoName);
 //            best_crops = itemView.findViewById(R.id.bestCropInfo);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), SoilInfoDetailActivity.class);
+                    intent.putExtra("model", model);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
 
         }
     }

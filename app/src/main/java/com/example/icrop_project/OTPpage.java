@@ -63,28 +63,18 @@ public class OTPpage extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Concatenate the digits from all EditText fields
                 concatDigits = firstDigit.getText().toString() + secondDigit.getText().toString() + thirdDigit.getText().toString() +
                         fourthDigit.getText().toString() + fifthDigit.getText().toString() + sixthDigit.getText().toString();
-
 
                 String generatedOTP = OTPData.getInstance().getGeneratedOTP();
 
                 if (concatDigits.equals(generatedOTP)) {
-                    // OTP is correct, proceed with registration
                     isButtonPressed = true;  // Change the value of the boolean variable
-
-                    // Create an intent to pass the value back to the registration page
                     Intent intent = new Intent();
                     intent.putExtra("otpVerification", isButtonPressed);
-
-                    // Set the result code and the intent with data
                     setResult(RESULT_OK, intent);
-
-                    // Close the OTP page and go back to the registration page
                     finish();
                 } else {
-                    // OTP is incorrect, show an error message
                     Toast.makeText(OTPpage.this, "Incorrect OTP, please try again.", Toast.LENGTH_SHORT).show();
                 }
             }

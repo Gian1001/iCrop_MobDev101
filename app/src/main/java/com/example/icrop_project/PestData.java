@@ -1,6 +1,8 @@
 package com.example.icrop_project;
 
-public class PestData {
+import java.io.Serializable;
+
+public class PestData implements Serializable {
 
     String affected_plants, control_methods, damage_symptoms, description, name, prevention_methods;
 

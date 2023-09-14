@@ -56,6 +56,8 @@ public class ProfileFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
+        recyclerView.setItemAnimator(null);
+
         cropList = new ArrayList<>();
         cropAdapter = new CropListAdapter(requireContext(), cropList);
         recyclerView.setAdapter(cropAdapter);

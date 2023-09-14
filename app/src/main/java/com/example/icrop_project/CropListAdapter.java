@@ -1,6 +1,7 @@
 package com.example.icrop_project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,19 @@ public class CropListAdapter extends RecyclerView.Adapter<CropListAdapter.MyView
         this.cropReports = cropReports;
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    private OnItemClickListener listener;
+
+    public CropListAdapter(Context context, ArrayList<CropData> cropReports, OnItemClickListener listener) {
+        this.context = context;
+        this.cropReports = cropReports;
+        this.listener = listener;
+    }
+
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,6 +52,11 @@ public class CropListAdapter extends RecyclerView.Adapter<CropListAdapter.MyView
         holder.reportID.setText(list.getDatePlanted());
         holder.dateSubmitted.setText(list.getDateHarvest());
 
+
+        holder.model = list;
+
+
+
     }
 
     @Override
@@ -47,12 +66,22 @@ public class CropListAdapter extends RecyclerView.Adapter<CropListAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView cropType, dateSubmitted, reportID;
+        CropData model;
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
 
             cropType = itemView.findViewById(R.id.cropListID );
             dateSubmitted = itemView.findViewById(R.id.dateReported);
             reportID = itemView.findViewById(R.id.listReportID);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), CropListDetailActivity.class);
+                    intent.putExtra("model", model);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

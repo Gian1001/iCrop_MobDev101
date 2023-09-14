@@ -19,6 +19,18 @@
         android:theme="@style/Theme.Icrop_project"
         tools:targetApi="31">
         <activity
+            android:name=".SoilInfoDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PestInfoDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CropInfoDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CropListDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".IntroSliderMain"
             android:exported="false" />
         <activity

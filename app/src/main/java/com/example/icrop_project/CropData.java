@@ -1,8 +1,14 @@
 package com.example.icrop_project;
 
-public class CropData {
+import java.io.Serializable;
 
-    String CropType, dateHarvest, datePlanted, dateReportSubmitted, reportID;
+public class CropData implements Serializable {
+
+    String CropType, dateHarvest, datePlanted, dateReportSubmitted, reportID, userID;
+
+    public String getUserID() {
+        return userID;
+    }
 
     public String getReportID() {
         return reportID;
