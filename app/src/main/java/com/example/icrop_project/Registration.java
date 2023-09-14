@@ -150,6 +150,11 @@ public class Registration extends AppCompatActivity {
         String userID = generateUserId();
 
 
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("userID", userID);
+        editor.apply();
+
         Map<String, Object> reportMap = new HashMap<>();
         reportMap.put("userID", userID);
         reportMap.put("userEmail", editTextEmail.getText().toString());
@@ -165,5 +170,11 @@ public class Registration extends AppCompatActivity {
                         finish();
                     }
                 });
+    }
+
+    public String accessUserID(){
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return preferences.getString("userID", ""); // "" is the default value if userID is not found
+
     }
 }

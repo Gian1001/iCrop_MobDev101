@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.time.LocalTime;
+
 
 public class CropPlanting extends AppCompatActivity {
 /*works pero wala pa validation especially sa date
@@ -73,9 +76,7 @@ then dialog once oks na yung account
 
                 if (selectedCrop.equals("Select Crop Type")) {
                     Toast.makeText(getApplicationContext(), "Please select a soil type", Toast.LENGTH_SHORT).show();
-                } else if (getPlantedDate.equals(getPlantedDate)) {
-                    Toast.makeText(getApplicationContext(), "Please input correct planting date", Toast.LENGTH_SHORT).show();
-                } else if (getSoilDate.equals(getSoilDate)) {
+                } else if (getSoilDate.equals(getTodaysDate())) {
                     Toast.makeText(getApplicationContext(), "Please input correct soil rotation date", Toast.LENGTH_SHORT).show();
                 } else {
                     pushInputs();
@@ -111,12 +112,20 @@ then dialog once oks na yung account
     }
 
     private void pushInputs() {
+
+        String getUserID = accessUserID();
+        String reportId = generateReportId();
+        String getTimeReported = getCurrentTime();
+
+
         Map<String, Object> reportMap = new HashMap<>();
         reportMap.put("CropType", selectedCropType);
         reportMap.put("datePlanted", harvestButton.getText().toString());
         reportMap.put("dateHarvest", dateButton.getText().toString());
+        reportMap.put("userID", getUserID.toString());
+        reportMap.put("reportID", reportId);
+        reportMap.put("DateTimeReported", getTimeReported);
 
-        String reportId = generateReportId();
 
         FirebaseDatabase.getInstance().getReference().child("CropPlanner").child(reportId).setValue(reportMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -180,10 +189,6 @@ then dialog once oks na yung account
         return "Jan" + " " + day + " " + year;
     }
 
-//    public void openDatePicker(View view) {
-//        datePickerDialog.show();
-//    }
-
     public static String generateReportId() {
 
         //fix format
@@ -194,5 +199,23 @@ then dialog once oks na yung account
         int randomNumber = random.nextInt(10000); // You can adjust the range as needed
 
         return timestamp + String.format("%04d", randomNumber);
+    }
+
+    public String getCurrentTime() {
+        // Get the current time
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY); // 24-hour format
+        int minute = calendar.get(Calendar.MINUTE);
+
+        // Format the time as "HH:MM"
+        String formattedTime = String.format("%02d:%02d", hour, minute);
+
+        return formattedTime;
+    }
+
+    private String accessUserID(){
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return preferences.getString("userID", ""); // "" is the default value if userID is not found
+
     }
 }

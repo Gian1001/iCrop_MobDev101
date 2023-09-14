@@ -1,6 +1,9 @@
 package com.example.icrop_project;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -44,7 +48,11 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         recyclerView = view.findViewById(R.id.reportList);
-        databaseReference = FirebaseDatabase.getInstance().getReference("CropPlanner");
+
+        String userID = accessUserID();
+        databaseReference  = FirebaseDatabase.getInstance().getReference("CropPlanner");
+        Query userQuery = databaseReference.orderByChild("userID").equalTo(userID);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
@@ -52,7 +60,7 @@ public class ProfileFragment extends Fragment {
         cropAdapter = new CropListAdapter(requireContext(), cropList);
         recyclerView.setAdapter(cropAdapter);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        userQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -113,5 +121,21 @@ public class ProfileFragment extends Fragment {
     private void removeFragmentFromBackStack() {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction().remove(this).commit();
+    }
+
+
+    //not sure pa if i clear nalang or hayaan yung userid sa preferences
+    private void clearUserID() {
+        SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("userID"); // Remove the user ID preference
+        editor.apply(); // Apply changes
+    }
+
+    //di gumagana pag nakainstantiate yung accessuserid na method kaya nakaganto lang
+    private String accessUserID(){
+        SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return preferences.getString("userID", ""); // "" is the default value if userID is not found
+
     }
 }

@@ -5,6 +5,7 @@ import static com.example.icrop_project.CropPlanting.generateReportId;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +28,7 @@ public class SoilPlanning extends AppCompatActivity {
     private EditText soilTexture, getWettingCycle;
     private Button submitReport;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class SoilPlanning extends AppCompatActivity {
         soilTexture = findViewById(R.id.soilTexture);
         getWettingCycle = findViewById(R.id.wettingCycle);
         submitReport = findViewById(R.id.submitSoilReport);
+
 
         // Set up spinners
         setUpSpinners();
@@ -110,15 +113,24 @@ public class SoilPlanning extends AppCompatActivity {
     }
 
     private void pushInputs() {
+        CropPlanting getTimeMethod = new CropPlanting();
+
+        String accessUserID = accessUserID();
+        String getCurrentTime = getTimeMethod.getCurrentTime();
+        String reportId = generateReportId();
+
         // Create a map to store the input values
         Map<String, Object> reportMap = new HashMap<>();
         reportMap.put("SoilType", selectedSoil);
         reportMap.put("Texture", soilTexture.getText().toString());
         reportMap.put("ph Level", selectedPhLevel);
+        reportMap.put("userID", accessUserID);
+        reportMap.put("reportID", reportId);
         reportMap.put("Wetting Cycle", getWettingCycle.getText().toString());
+        reportMap.put("DateTimeReported", getCurrentTime);
+
 
         // Generate a report ID
-        String reportId = generateReportId();
 
         // Push the input values to the Firebase Realtime Database
         FirebaseDatabase.getInstance().getReference().child("SoilPlanner").child(reportId).setValue(reportMap)
@@ -130,5 +142,11 @@ public class SoilPlanning extends AppCompatActivity {
                         finish();
                     }
                 });
+    }
+
+    private String accessUserID(){
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return preferences.getString("userID", ""); // "" is the default value if userID is not found
+
     }
 }
