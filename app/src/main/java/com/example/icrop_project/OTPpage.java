@@ -1,9 +1,5 @@
 package com.example.icrop_project;
 
-import static com.example.icrop_project.Registration.generateUserId;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,29 +7,12 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import androidx.appcompat.app.AppCompatActivity;
 
-
-
-import com.example.icrop_project.SendMessageTask;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.security.SecureRandom;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 public class OTPpage extends AppCompatActivity {
 
