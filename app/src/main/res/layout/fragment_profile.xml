@@ -12,6 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         app:srcCompat="@drawable/icrop_logo_v2" />
 
     <TextView

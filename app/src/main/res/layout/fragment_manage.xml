@@ -3,9 +3,278 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ManageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/titleBarManage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:background="#f1f1f1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crop Planting"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="30sp"
+                android:textColor="#000000"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/optionsManage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBarManage"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/manageCropSection"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:padding="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5">
+
+                <!-- Content for the first ConstraintLayout -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/manageCropButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="onCardViewClicked"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                >
+
+
+                <!-- This ConstraintLayout contains the masked image and other views -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <!-- ImageView with mask -->
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/vegetables"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#99172E10"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        >
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/titleOptionPlanting"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center"
+                        android:text="Crop Planting"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_default="percent"
+                        app:layout_constraintHeight_percent="0.25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/descOptionPlanting"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:gravity="center"
+                        android:text="View crop information such as details on planting, harvesting and care instructions"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_default="percent"
+                        app:layout_constraintHeight_percent="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/titleOptionPlanting"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/baseline_arrow_forward_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintHeight_default="percent"
+                        app:layout_constraintHeight_percent="0.25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:tint="#FFFFFF" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/manageSoilSection"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:padding="20dp"
+                app:layout_constraintTop_toBottomOf="@id/manageCropSection"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.5">
+
+                <!-- Content for the first ConstraintLayout -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/manageSoilButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="onCardViewClicked"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+
+
+                    <!-- This ConstraintLayout contains the masked image and other views -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <!-- ImageView with mask -->
+                        <ImageView
+                            android:id="@+id/imageViewSoil"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/soil"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <!-- View for the black overlay -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#80472B02"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            >
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/titleOptionSoil"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="center"
+                            android:text="Soil Planning"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="#FFFFFF"
+                            android:textSize="30sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_default="percent"
+                            app:layout_constraintHeight_percent="0.25"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/descOptionSoil"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:gravity="center"
+                            android:text="View crop information such as details on planting, harvesting and care instructions"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_default="percent"
+                            app:layout_constraintHeight_percent="0.4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/titleOptionSoil"
+                            />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="8dp"
+                            android:src="@drawable/baseline_arrow_forward_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHeight_default="percent"
+                            app:layout_constraintHeight_percent="0.25"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:tint="#FFFFFF" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
+
+
+    <!-- TODO: Update blank fragment layout
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,6 +296,5 @@
         android:background="@color/teal"
         android:layout_marginTop="300dp"
         android:layout_marginStart="30dp"/>
+-->
 
-
-</FrameLayout>

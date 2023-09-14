@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ListFragment"
     android:orientation="vertical">
 
@@ -12,31 +13,87 @@
         android:orientation="vertical">
 
         <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="list"
-            android:textSize="30sp"
-            android:layout_marginTop="10dp" />
+            android:padding="20dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="8dp"
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Crops List"
-            android:textSize="30sp"
-            android:layout_marginTop="10dp" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icrop_logo_v2"
+            android:scaleType="centerInside"
+            android:layout_gravity="center"
+            />
+
+        <!-- Solid bottom border -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#F5F5F5"
+            android:layout_gravity="bottom"
+        />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="#81cc35"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:text="Crops List"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="30sp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"
+                />
+
+        </androidx.cardview.widget.CardView>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#f5f5f5"
+            android:padding="4dp"
+            android:paddingBottom="8dp"
             android:id="@+id/cropInformationList"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pests and Disease List"
-            android:textSize="30sp"
-            android:layout_marginTop="10dp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="#E8B537"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:text="Pests and Diseases"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="30sp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"
+                />
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
