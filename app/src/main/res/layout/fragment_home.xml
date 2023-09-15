@@ -15,16 +15,7 @@
         android:id="@+id/rl_home"
         android:visibility="visible">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome User"
-            android:textSize="30sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:id="@+id/user_welcome"
-            android:textStyle="bold"
-            />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -33,7 +24,6 @@
             android:textSize="40sp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/user_welcome"
             android:id="@+id/weather_forecast"
             />
 
@@ -45,8 +35,7 @@
             android:text="City Name"
             android:gravity="center"
             android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:padding="10dp"
+            android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:id="@+id/tv_cityname"
             android:layout_below="@id/weather_forecast"/>
@@ -71,9 +60,7 @@
             android:layout_below="@id/ll_edt"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
@@ -83,23 +70,24 @@
             android:layout_below="@id/iv_icon"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:padding="5dp"
             android:text="23"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/tv_condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_condition"
-            android:layout_margin="10dp"
+            android:layout_below="@id/tv_temperature"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:textAlignment="center"
             android:text="Condition"
-            android:textColor="@color/black"
-            android:layout_below="@id/tv_temperature"/>
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
 
 
@@ -112,7 +100,27 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agricultural new and Updates"
+            android:textSize="40sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/news_updates"
+            android:layout_below="@id/rv_weather"
+            />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_news"
+            android:layout_below="@id/news_updates"
+            android:layout_alignParentBottom="false"
+            android:orientation="vertical"
+            android:background="@drawable/background_news_rv"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
     </RelativeLayout>
 

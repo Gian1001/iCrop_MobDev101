@@ -59,9 +59,12 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private RelativeLayout homeRL;
-    private RecyclerView weatherRV;
+    private RecyclerView weatherRV, newsRV;
     private WeatherRVAdapter weatherRVAdapter;
     private ArrayList<WeatherRVModal> weatherRVModalArrayList;
+
+    private NewsRVAdapter newsRVAdapter;
+    private ArrayList<NewsRVModel> newsRVModelArrayList;
     private LocationManager locationManager;
     private int PERMISSION_CODE = 1;
     private String cityName;
@@ -115,6 +118,17 @@ public class HomeFragment extends Fragment {
         conditionTV = view.findViewById(R.id.tv_condition);
         iconIV = view.findViewById(R.id.iv_icon);
         weatherRV = view.findViewById(R.id.rv_weather);
+        newsRV = view.findViewById(R.id.rv_news);
+
+        newsRVModelArrayList = new ArrayList<>();
+        newsRVModelArrayList.add(new NewsRVModel(R.drawable.image_news1, "A bright future for farming: 20-year-old agriculture student leads a youth urban farm in Taguig", ""));
+        newsRVModelArrayList.add(new NewsRVModel(R.drawable.image_news2, "QC eyes to transform 30-ha. unused land into farm areas", ""));
+        newsRVModelArrayList.add(new NewsRVModel(R.drawable.image_news3, "‘Farm along da riles’: Tondo youth marry urban farming and bayanihan for food security", ""));
+        newsRVModelArrayList.add(new NewsRVModel(R.drawable.image_news4, "QC urban farming program pushed as model", ""));
+        newsRVModelArrayList.add(new NewsRVModel(R.drawable.image_news3, "‘Farm along da riles’: Tondo youth marry urban farming and bayanihan for food security", ""));
+        newsRVAdapter = new NewsRVAdapter(requireContext(), newsRVModelArrayList);
+        newsRV.setAdapter(newsRVAdapter);
+        newsRV.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
 
         weatherRVModalArrayList = new ArrayList<>();
         weatherRVAdapter = new WeatherRVAdapter(requireContext(), weatherRVModalArrayList);
@@ -207,7 +221,8 @@ public class HomeFragment extends Fragment {
 //                  int isDay = response.getJSONObject("current").getInt("is_day");
                     String condition = response.getJSONObject("current").getJSONObject("condition").getString("text");
                     String conditionIcon = response.getJSONObject("current").getJSONObject("condition").getString("icon");
-                    Picasso.get().load("http://" + conditionIcon).into(iconIV);
+                    Picasso.get().load("https://" + conditionIcon).into(iconIV);
+
 
                     conditionTV.setText(condition);
 
@@ -240,4 +255,6 @@ public class HomeFragment extends Fragment {
 
         requestQueue.add(jsonObjectRequest);
     }
+
+
 }

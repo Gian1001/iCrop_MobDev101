@@ -1,6 +1,7 @@
 package com.example.icrop_project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +41,12 @@ public class WeatherRVAdapter extends RecyclerView.Adapter<WeatherRVAdapter.View
     public void onBindViewHolder(@NonNull WeatherRVAdapter.ViewHolder holder, int position) {
         WeatherRVModal modal = weatherRVModalArrayList.get(position);
         holder.temperatureTV.setText(modal.getTemperature()+"°c");
-        Picasso.get().load("http:".concat(modal.getIcon())).into(holder.conditionIV);
+        Log.d("Image URL", "URL: " + modal.getIcon());
+        Picasso.get().load("https:" + modal.getIcon()).into(holder.conditionIV);
         holder.windspeedTV.setText(modal.getWindSpeed()+"Km/h");
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         SimpleDateFormat output = new SimpleDateFormat("hh:mm aa");
+
         try {
             Date t = input.parse(modal.getTime());
             holder.timeTV.setText(output.format(t));

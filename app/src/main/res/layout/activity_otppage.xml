@@ -4,72 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OTPpage">
+    tools:context=".OTPpage"
+
+    >
 
 
-    <EditText
-        android:id="@+id/firstNumber"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="100dp"
-        android:inputType="number"
-        android:maxLength="1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/secondNumber"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="100dp"
-        android:inputType="number"
-        android:maxLength="1" />
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/ic_otp"
+            android:gravity="center"
+            android:layout_gravity="center"
 
-    <EditText
-        android:id="@+id/thirdNumber"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="100dp"
-        android:inputType="number"
-        android:maxLength="1" />
 
-    <EditText
-        android:id="@+id/fourthNumber"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="100dp"
-        android:inputType="number"
-        android:maxLength="1" />
+            />
 
-    <EditText
-        android:id="@+id/fifthNumber"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="100dp"
-        android:inputType="number"
-        android:maxLength="1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Enter your OTP"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:textColor="@color/tertiary_green"
 
-    <EditText
-        android:id="@+id/sixthNumber"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="100dp"
-        android:inputType="number"
-        android:maxLength="1"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
+            />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="-250dp"
-        android:text="test button"
-        android:id="@+id/testButton"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Type the code sent to your mobile number."
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/firstNumber"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/background_otp"
+                android:layout_marginTop="80dp"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/secondNumber"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="13dp"
+                android:background="@drawable/background_otp"
+                android:layout_marginTop="80dp"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/thirdNumber"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="13dp"
+                android:background="@drawable/background_otp"
+                android:layout_marginTop="80dp"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/fourthNumber"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="13dp"
+                android:background="@drawable/background_otp"
+                android:layout_marginTop="80dp"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/fifthNumber"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="13dp"
+                android:background="@drawable/background_otp"
+                android:layout_marginTop="80dp"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/sixthNumber"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="13dp"
+                android:background="@drawable/background_otp"
+                android:layout_marginTop="80dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="number"
+                android:maxLength="1" />
+
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/testButton"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/rounded_button_otp"
+            android:text="Verify"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+
 
 
 
