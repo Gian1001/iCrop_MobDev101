@@ -58,16 +58,13 @@ public class CropPlanting extends AppCompatActivity {
         setContentView(R.layout.activity_crop_planting);
         FirebaseApp.initializeApp(this);
 
-        // Initialize views and set adapters
         initializeViews();
 
-        // Initialize date picker
         initDatePicker(R.id.plantingButton);
         initDatePicker(R.id.harvestDate);
     }
 
     private void initializeViews() {
-        // Initialize and set listeners for buttons
         plantingButton = findViewById(R.id.plantingButton);
         plantingButton.setText(getTodaysDate());
 
@@ -93,7 +90,6 @@ public class CropPlanting extends AppCompatActivity {
             }
         });
 
-        // Initialize spinner and set its adapter and listener
         spinnerCrops = findViewById(R.id.cropType);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.dropdown_options, android.R.layout.simple_spinner_item
@@ -112,7 +108,6 @@ public class CropPlanting extends AppCompatActivity {
             }
         });
 
-        //spinner trigger
         inputCropType = findViewById(R.id.inputCropType);
         inputCropType.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +116,6 @@ public class CropPlanting extends AppCompatActivity {
             }
         });
 
-        //show gallery delete if panget
         imageViewChooseImg = findViewById(R.id.imageViewChooseImg);
         btnChooseImg = findViewById(R.id.btnChooseImg);
 
@@ -146,33 +140,26 @@ public class CropPlanting extends AppCompatActivity {
         String reportId = generateReportId();
         String getTimeReported = getCurrentDateTime();
 
-        // Check if an image is selected
         if (selectedImageUri != null) {
-            // Upload the selected image to Firebase Storage
             uploadImageToStorage(reportId, getUserID, getTimeReported);
         } else {
-            // If no image is selected, continue with other data
             pushDataWithoutImage(reportId, getUserID, getTimeReported);
         }
     }
 
     private void uploadImageToStorage(final String reportId, final String userID, final String timeReported) {
-        // Create a reference to the Firebase Storage location where you want to store the image
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images/" + reportId);
 
-        // Upload the image to Firebase Storage
         storageRef.putFile(selectedImageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get the download URL of the uploaded image
                         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 // Image URL
                                 selectedImageUrl = uri.toString();
 
-                                // Continue to push other data to the Realtime Database
                                 pushDataWithImage(reportId, userID, timeReported);
                             }
                         });
@@ -184,18 +171,18 @@ public class CropPlanting extends AppCompatActivity {
         // Create a map to store the input values including the image URL
         Map<String, Object> reportMap = new HashMap<>();
         reportMap.put("CropType", selectedCropType);
-        reportMap.put("datePlanted", harvestButton.getText().toString());
-        reportMap.put("dateHarvest", plantingButton.getText().toString());
+        reportMap.put("datePlanted", plantingButton.getText().toString());
+        reportMap.put("dateHarvest", harvestButton.getText().toString());
         reportMap.put("userID", userID);
         reportMap.put("reportID", reportId);
         reportMap.put("DateTimeReported", timeReported);
         reportMap.put("ImageUrl", selectedImageUrl); // Store the image URL
 
-        // Push the input values to the Firebase Realtime Database
         FirebaseDatabase.getInstance().getReference().child("CropPlanner").child(reportId).setValue(reportMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        Toast.makeText(CropPlanting.this, "Report is Submitted. View Profile to see report.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(CropPlanting.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -204,11 +191,10 @@ public class CropPlanting extends AppCompatActivity {
     }
 
     private void pushDataWithoutImage(final String reportId, String userID, String timeReported) {
-        // Create a map to store the input values without the image URL
         Map<String, Object> reportMap = new HashMap<>();
         reportMap.put("CropType", selectedCropType);
-        reportMap.put("datePlanted", harvestButton.getText().toString());
-        reportMap.put("dateHarvest", plantingButton.getText().toString());
+        reportMap.put("datePlanted", plantingButton.getText().toString());
+        reportMap.put("dateHarvest", harvestButton.getText().toString());
         reportMap.put("userID", userID);
         reportMap.put("reportID", reportId);
         reportMap.put("DateTimeReported", timeReported);
@@ -217,6 +203,7 @@ public class CropPlanting extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        Toast.makeText(CropPlanting.this, "Report is Submitted. View Profile to see report.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(CropPlanting.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -229,7 +216,6 @@ public class CropPlanting extends AppCompatActivity {
         final View dateView = findViewById(buttonId);
         final DatePickerDialog datePickerDialog;
 
-        // Initialize datePickerDialog directly
         datePickerDialog = createDatePickerDialog(buttonId);
 
         dateView.setOnClickListener(new View.OnClickListener() {
@@ -277,11 +263,6 @@ public class CropPlanting extends AppCompatActivity {
         return "Jan" + " " + day + " " + year;
     }
 
-
-//    public void openDatePicker(View view) {
-//        datePickerDialog.show();
-//    }
-
     public static String generateReportId() {
 
         //fix format
@@ -317,7 +298,7 @@ public class CropPlanting extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1; // Note: Month is zero-based, so add 1
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY); // 24-hour format
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
         // Format the date and time as "YYYY-MM-DD HH:MM"
@@ -328,7 +309,7 @@ public class CropPlanting extends AppCompatActivity {
 
     private String accessUserID(){
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        return preferences.getString("userID", ""); // "" is the default value if userID is not found
+        return preferences.getString("userID", "");
 
     }
 }

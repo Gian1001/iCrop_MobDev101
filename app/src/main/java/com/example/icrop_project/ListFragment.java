@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +31,7 @@ public class ListFragment extends Fragment {
     private ArrayList<CropInformationData> cropInfoList;
     private SoilListAdapter soilListAdapter;
     private ArrayList<SoilData> soilArrayList;
+    private Button returnButton;
 
     private static final String CROPS_DB_PATH = "crops_db/crops";
     private static final String PESTS_DB_PATH = "pests_db/pests_and_diseases";
@@ -50,6 +52,8 @@ public class ListFragment extends Fragment {
         setupRecyclerView(recyclerView1, CROPS_DB_PATH);
         setupRecyclerView(recyclerView2, PESTS_DB_PATH);
         setupRecyclerView(recyclerView3, SOILS_DB_PATH);
+
+
 
         return rootView;
     }
@@ -110,7 +114,6 @@ public class ListFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle database errors here
             }
         });
     }

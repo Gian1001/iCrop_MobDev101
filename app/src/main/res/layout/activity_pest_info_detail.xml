@@ -47,11 +47,11 @@
                     android:id="@+id/pestNameDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Test"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,7 +74,7 @@
                     android:text="Test"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:layout_marginBottom="10dp" />
             </LinearLayout>
 
@@ -99,8 +99,7 @@
                     android:text="Test"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp" />
+                    android:textSize="18sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -124,8 +123,7 @@
                     android:text="Test"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp" />
+                    android:textSize="18sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -149,7 +147,7 @@
                     android:text="Test"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:layout_marginBottom="10dp" />
             </LinearLayout>
 
@@ -174,8 +172,7 @@
                     android:text="Test"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="20sp"
-                    android:layout_marginStart="10dp" />
+                    android:textSize="18sp"/>
             </LinearLayout>
             <Button
                 android:layout_width="wrap_content"
@@ -189,6 +186,7 @@
                 android:text="Go Back"
                 android:textColor="@color/black"
                 android:textSize="18dp"
+                android:id="@+id/backButton"
                 />
 
         </LinearLayout>

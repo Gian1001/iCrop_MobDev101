@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SoilData implements Serializable {
 
-    String best_crops, common_issues, description, name, nutrient_content, organic_matter, ph_range;
+    String best_crops, common_issues, description, name, nutrient_content, organic_matter_content, ph_range;
 
     public String getBest_crops() {
         return best_crops;
@@ -26,8 +26,8 @@ public class SoilData implements Serializable {
         return nutrient_content;
     }
 
-    public String getOrganic_matter() {
-        return organic_matter;
+    public String getOrganic_matter_content() {
+        return organic_matter_content;
     }
 
     public String getPh_range() {

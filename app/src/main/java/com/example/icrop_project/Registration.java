@@ -78,9 +78,10 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-                String email, password;
+                String email, password, mobile;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
+                mobile = String.valueOf(editContactValue.getText());
                 boolean isButtonPressed = getIntent().getBooleanExtra("otpVerification", false);
 
 
@@ -93,6 +94,9 @@ public class Registration extends AppCompatActivity {
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(Registration.this, "Please enter your password", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
+                    return;
+                }if (TextUtils.isEmpty(mobile)){
+                    Toast.makeText(Registration.this, "Please enter your mobile number", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String generatedOTP = generateOTP(); // Generate OTP
@@ -134,7 +138,7 @@ public class Registration extends AppCompatActivity {
                                         finish();
                                     } else {
                                         // Registration failed
-                                        Toast.makeText(Registration.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Registration.this, "Authentication failed. Try Restarting the App.", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
                                 }
@@ -183,7 +187,7 @@ public class Registration extends AppCompatActivity {
 
     public String accessUserID() {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        return preferences.getString("userID", ""); // "" is the default value if userID is not found
+        return preferences.getString("userID", "");
 
     }
 }

@@ -26,7 +26,8 @@ public class NotifFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private DatabaseReference databaseReference;
-    private CropListAdapter cropAdapter;
+//    private CropListAdapter cropAdapter;
+    private CommunityReportsAdapter cropAdapter;
     private ArrayList<CropData> cropList;
     public NotifFragment() {
         // Required empty public constructor
@@ -48,7 +49,7 @@ public class NotifFragment extends Fragment {
         recyclerView.setItemAnimator(null);
 
         cropList = new ArrayList<>();
-        cropAdapter = new CropListAdapter(requireContext(), cropList);
+        cropAdapter = new CommunityReportsAdapter(requireContext(), cropList);
         recyclerView.setAdapter(cropAdapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -69,12 +70,10 @@ public class NotifFragment extends Fragment {
 
                 cropAdapter.notifyDataSetChanged();
 
-                // Sort the list by "reportID" (or any other field you want to sort by)
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle errors here
             }
         });
 

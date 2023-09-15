@@ -46,7 +46,7 @@ public class SoilListAdapter extends RecyclerView.Adapter<SoilListAdapter.SoilIn
     public void onBindViewHolder(@NonNull SoilListAdapter.SoilInfoListViewHolder holder, int position) {
         SoilData list = soilData.get(position);
         holder.name.setText(list.getName());
-//        holder.best_crops.setText(list.getBest_crops());
+        holder.best_crops.setText(list.getBest_crops());
 
         holder.model = list;
     }
@@ -63,7 +63,7 @@ public class SoilListAdapter extends RecyclerView.Adapter<SoilListAdapter.SoilIn
             super(itemView);
 
             name = itemView.findViewById(R.id.soilInfoName);
-//            best_crops = itemView.findViewById(R.id.bestCropInfo);
+            best_crops = itemView.findViewById(R.id.bestCropInfo);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

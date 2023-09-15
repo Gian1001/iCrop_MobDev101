@@ -31,8 +31,6 @@ public class ManageFragment extends Fragment {
         manageCropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Define the action when the Button is clicked (e.g., navigate to another activity)
-                // For example, starting a new activity:
                 Intent intent = new Intent(getActivity(), CropPlanting.class);
                 startActivity(intent);
             }

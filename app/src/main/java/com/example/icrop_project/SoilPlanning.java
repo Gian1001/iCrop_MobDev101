@@ -41,10 +41,8 @@ public class SoilPlanning extends AppCompatActivity {
         submitReport = findViewById(R.id.submitSoilReport);
 
 
-        // Set up spinners
         setUpSpinners();
 
-        // Set click listener for submit button
         submitReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +134,6 @@ public class SoilPlanning extends AppCompatActivity {
         CropPlanting getTimeMethod = new CropPlanting();
 
         String accessUserID = accessUserID();
-    //    String getCurrentTime = getTimeMethod.getCurrentTime();
         String reportId = generateReportId();
 
         // Create a map to store the input values
@@ -147,16 +144,14 @@ public class SoilPlanning extends AppCompatActivity {
         reportMap.put("userID", accessUserID);
         reportMap.put("reportID", reportId);
         reportMap.put("Wetting Cycle", getWettingCycle.getText().toString());
-     //   reportMap.put("DateTimeReported", getCurrentTime);
 
 
-        // Generate a report ID
 
-        // Push the input values to the Firebase Realtime Database
         FirebaseDatabase.getInstance().getReference().child("SoilPlanner").child(reportId).setValue(reportMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        Toast.makeText(SoilPlanning.this, "Report is Submitted. View Profile to see report.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SoilPlanning.this, MainActivity.class); // Use CropPlanting.this as the first argument
                         startActivity(intent);
                         finish();
