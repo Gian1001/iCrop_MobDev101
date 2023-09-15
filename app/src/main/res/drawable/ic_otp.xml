@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:gravity="fill"
+        android:drawable="@drawable/baseline_shield_24"
+
+        />
+    <item
+        android:gravity="center"
+        android:drawable="@drawable/baseline_check_24"
+
+        />
+
+</layer-list>
