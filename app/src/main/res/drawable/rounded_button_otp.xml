@@ -8,7 +8,7 @@
 <!--        android:color="@color/secondary_green"-->
 <!--        />-->
 
-    <solid android:color="@color/tertiary_green"
+    <solid android:color="@color/tertiary_yellow"
         />
     <corners
         android:bottomRightRadius="100dp"

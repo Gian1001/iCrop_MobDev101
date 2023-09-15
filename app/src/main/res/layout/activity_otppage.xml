@@ -24,6 +24,7 @@
             android:layout_gravity="center"
 
 
+
             />
 
         <TextView
@@ -34,7 +35,8 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:padding="10dp"
-            android:textColor="@color/tertiary_green"
+            android:textColor="#F29F05"
+
 
             />
 
@@ -61,10 +63,11 @@
                 android:id="@+id/firstNumber"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/background_otp"
                 android:layout_marginTop="80dp"
                 android:inputType="number"
+                android:textAlignment="center"
                 android:maxLength="1" />
 
             <EditText
@@ -75,6 +78,7 @@
                 android:background="@drawable/background_otp"
                 android:layout_marginTop="80dp"
                 android:inputType="number"
+                android:textAlignment="center"
                 android:maxLength="1" />
 
             <EditText
@@ -85,6 +89,7 @@
                 android:background="@drawable/background_otp"
                 android:layout_marginTop="80dp"
                 android:inputType="number"
+                android:textAlignment="center"
                 android:maxLength="1" />
 
             <EditText
@@ -95,6 +100,7 @@
                 android:background="@drawable/background_otp"
                 android:layout_marginTop="80dp"
                 android:inputType="number"
+                android:textAlignment="center"
                 android:maxLength="1" />
 
             <EditText
@@ -105,6 +111,7 @@
                 android:background="@drawable/background_otp"
                 android:layout_marginTop="80dp"
                 android:inputType="number"
+                android:textAlignment="center"
                 android:maxLength="1" />
 
             <EditText
@@ -117,6 +124,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:inputType="number"
+                android:textAlignment="center"
                 android:maxLength="1" />
 
 
@@ -131,7 +139,8 @@
             android:text="Verify"
             android:textColor="@color/white"
             android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:backgroundTint="#F29F05"/>
 
 
     </LinearLayout>
