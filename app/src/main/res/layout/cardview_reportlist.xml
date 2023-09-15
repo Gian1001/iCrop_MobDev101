@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
     android:orientation="vertical"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
@@ -24,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Report ID:"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -33,7 +36,7 @@
                 android:layout_marginStart="10dp"
                 android:text="test"
                 android:id="@+id/listReportID"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date Reported:"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -55,7 +58,7 @@
                 android:layout_marginStart="10dp"
                 android:text="test"
                 android:id="@+id/dateReported"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -67,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Crop Planted:"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -76,7 +79,7 @@
                 android:layout_marginStart="10dp"
                 android:text="test"
                 android:id="@+id/cropListID"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 

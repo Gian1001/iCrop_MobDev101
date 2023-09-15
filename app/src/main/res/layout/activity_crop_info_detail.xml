@@ -278,6 +278,7 @@
             android:layout_marginTop="10dp"
             android:paddingBottom="3dp"
             android:text="Go Back"
+            android:id="@+id/returnButton"
             android:textColor="@color/black"
             android:textSize="18dp"
             />

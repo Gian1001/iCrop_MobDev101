@@ -3,15 +3,21 @@ package com.example.icrop_project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SoilInfoDetailActivity extends AppCompatActivity {
 
+
+    Button returnButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soil_info_detail);
 
+
+        returnButton = findViewById(R.id.ReturnButton);
 
         SoilData model = (SoilData) getIntent().getSerializableExtra("model");
         TextView[] textViews = {
@@ -30,7 +36,7 @@ public class SoilInfoDetailActivity extends AppCompatActivity {
                 model.getName(),
                 model.getNutrient_content(),
                 model.getCommon_issues(),
-                model.getOrganic_matter(),
+                model.getOrganic_matter_content(),
                 model.getPh_range(),
                 model.getBest_crops(),
                 model.getDescription()
@@ -40,5 +46,12 @@ public class SoilInfoDetailActivity extends AppCompatActivity {
         for (int i = 0; i < textViews.length; i++) {
             textViews[i].setText(data[i]);
         }
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

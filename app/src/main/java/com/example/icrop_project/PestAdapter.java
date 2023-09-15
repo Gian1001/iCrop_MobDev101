@@ -40,7 +40,7 @@ public class PestAdapter extends RecyclerView.Adapter<PestAdapter.PestViewHolder
 
         PestData list = pestData.get(position);
         holder.name.setText(list.getName());
-//        holder.damageSymptoms.setText(list.getDamage_symptoms());
+        holder.damageSymptoms.setText(list.getDamage_symptoms());
 
         holder.model = list;
     }
@@ -59,6 +59,7 @@ public class PestAdapter extends RecyclerView.Adapter<PestAdapter.PestViewHolder
             super(itemView);
 
             name = itemView.findViewById(R.id.pestInfoName);
+            damageSymptoms = itemView.findViewById(R.id.damageInfo);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

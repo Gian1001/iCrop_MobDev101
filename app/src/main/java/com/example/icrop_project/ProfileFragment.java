@@ -77,14 +77,12 @@ public class ProfileFragment extends Fragment {
                 Collections.sort(cropList, new Comparator<CropData>() {
                     @Override
                     public int compare(CropData crop1, CropData crop2) {
-                        // Compare reportIDs as strings in descending order
                         return crop2.getReportID().compareTo(crop1.getReportID());
                     }
                 });
 
                 cropAdapter.notifyDataSetChanged();
 
-                // Sort the list by "reportID" (or any other field you want to sort by)
             }
 
             @Override
@@ -102,7 +100,6 @@ public class ProfileFragment extends Fragment {
 
     private void initView(View view) {
         button = view.findViewById(R.id.logout);
-        textView = view.findViewById(R.id.user_details);
     }
 
     private void checkUserLogin() {
@@ -111,7 +108,6 @@ public class ProfileFragment extends Fragment {
         if (user == null) {
             redirectToLogin();
         } else {
-            textView.setText(user.getEmail());
         }
     }
 
@@ -141,7 +137,6 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    //not sure pa if i clear nalang or hayaan yung userid sa preferences
     private void clearUserID() {
         SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();

@@ -61,8 +61,8 @@ public class CropListDetailActivity extends AppCompatActivity {
             textViews[i].setText(data[i]);
         }
         dateHarvest.setText(model.getDateHarvest());
-        String imageUrl = model.getImageUrl(); // Get the image URL from CropData
-        Picasso.get().load(imageUrl).into(imageView); // Load image into ImageView
+        String imageUrl = model.getImageUrl();
+        Picasso.get().load(imageUrl).into(imageView);
 
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,11 +74,9 @@ public class CropListDetailActivity extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the new harvest date from the TextInputEditText
                 TextInputEditText dateHarvestDetailEditText = findViewById(R.id.dateHarvestDetail);
                 String newHarvestDate = dateHarvestDetailEditText.getText().toString().trim();
 
-                // Update the Firebase database with the new harvest date
                 DatabaseReference harvestDateRef = databaseReference.child("CropPlanner").child(model.getReportID()).child("dateHarvest");
                 harvestDateRef.setValue(newHarvestDate)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

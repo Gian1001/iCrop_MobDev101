@@ -72,14 +72,9 @@ public class CropListInfoAdapter extends RecyclerView.Adapter<CropListInfoAdapte
             super(itemView);
 
             cropName = itemView.findViewById(R.id.cropInformationName);
-//            cropDescription = itemView.findViewById(R.id.);
-//            cropEndDate = itemView.findViewById(R.id.cropInformationName);
+
             cropSoilType = itemView.findViewById(R.id.soilTypeInformation);
-//            cropStartDate = itemView.findViewById(R.id.cropInformationName);
-//            cropSunlight = itemView.findViewById(R.id.cropInformationName);
-//            cropTemp = itemView.findViewById(R.id.cropInformationName);
             cropType = itemView.findViewById(R.id.cropInformationType);
-//            cropWatering = itemView.findViewById(R.id.cropInformationName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
