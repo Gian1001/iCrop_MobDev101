@@ -71,7 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#f5f5f5"
-            android:padding="4dp"
             android:paddingBottom="8dp"
             android:id="@+id/cropInformationList"/>
 
@@ -99,18 +98,36 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#f5f5f5"
+            android:paddingBottom="8dp"
             android:id="@+id/pestInformationList"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Crops List"
-            android:textSize="30sp"
-            android:layout_marginTop="10dp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="#9E8623"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:text="Soil List"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="30sp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"
+                />
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#f5f5f5"
+            android:paddingBottom="8dp"
             android:id="@+id/soilInformationList"/>
 
     </LinearLayout>
