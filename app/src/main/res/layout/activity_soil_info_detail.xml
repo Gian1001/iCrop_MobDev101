@@ -2,12 +2,21 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+        android:id="@+id/formCropPlant"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/form_circle_bg"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -20,118 +29,173 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
-                android:text="Soil Name : "/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"                android:text="Soil Name : "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Test"
-                android:textSize="26sp"
-                android:id="@+id/soilNameDetail"/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"                android:id="@+id/soilNameDetail"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
-                android:text="Best Crops : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"                android:text="Best Crops : "
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Test"
-                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
                 android:id="@+id/soilBestCropsDetail"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
                 android:text="Common Issues : "/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Test"
-                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
                 android:id="@+id/soilIssuesDetail"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
-                android:text="Nutrient Content :"/>
+                android:text="Nutrient Content :"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Test"
-                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
                 android:id="@+id/soilContentDetail"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="26sp"
-                android:text="Organic Matter Percentage :  "/>
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Organic Matter Percentage :  "
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/soilOrganicDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Test"
-                android:textSize="26sp"
-                android:id="@+id/soilOrganicDetail"/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
-                android:text="ph Range : "/>
+                android:text="ph Range : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Test"
-                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/soilPHRangeDetail"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
-                android:text="Description : "/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"                android:text="Description : "/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Test"
-                android:textSize="26sp"
-                android:id="@+id/soilDescriptionDetail"/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"                android:id="@+id/soilDescriptionDetail"/>
         </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/secondary_yellow"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="3dp"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="3dp"
+            android:text="Go Back"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>
