@@ -102,7 +102,7 @@ public class ProfileFragment extends Fragment {
 
     private void initView(View view) {
         button = view.findViewById(R.id.logout);
-        textView = view.findViewById(R.id.user_details);
+        //textView = view.findViewById(R.id.user_details);
     }
 
     private void checkUserLogin() {
@@ -111,7 +111,7 @@ public class ProfileFragment extends Fragment {
         if (user == null) {
             redirectToLogin();
         } else {
-            textView.setText(user.getEmail());
+          //  textView.setText(user.getEmail());
         }
     }
 

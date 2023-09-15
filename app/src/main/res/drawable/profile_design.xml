@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Shape 1: Rounded Corners -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+    <item android:width="550dp" android:height="245dp" android:gravity="center_horizontal|top"  android:top="-25dp"
+        android:right="-130dp">
+        <shape android:shape="oval">
+            <solid android:color="#79BA38" /> <!-- Change color as needed -->
+        </shape>
+    </item>
+    <item android:width="600dp" android:height="250dp" android:gravity="center_horizontal|top"  android:top="-100dp" android:left="-200dp">
+        <shape android:shape="oval">
+            <solid android:color="#FADE6A" /> <!-- Change color as needed -->
+        </shape>
+    </item>
+
+
+
+</layer-list>
