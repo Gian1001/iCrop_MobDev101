@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class SoilPlanning extends AppCompatActivity {
 
     private Spinner soilTypeSpinner, phLevelSpinner;
     private String selectedSoil, selectedPhLevel;
-    private EditText soilTexture, getWettingCycle;
+    private TextInputEditText soilTexture, getWettingCycle, inPhLevel, inputSoilType;
     private Button submitReport;
 
 
@@ -75,6 +76,23 @@ public class SoilPlanning extends AppCompatActivity {
         soilTypeSpinner = findViewById(R.id.soilSpinner);
         phLevelSpinner = findViewById(R.id.ph_levels);
 
+        // spinner triggers (click texteditinput)
+        inputSoilType = findViewById(R.id.inputSoilType);
+        inputSoilType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                soilTypeSpinner.performClick();
+            }
+        });
+
+        inPhLevel = findViewById(R.id.inPhLevel);
+        inPhLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phLevelSpinner.performClick();
+            }
+        });
+
         // Set up ArrayAdapter and OnItemSelectedListener for soilTypeSpinner
         ArrayAdapter<CharSequence> soilAdapter = ArrayAdapter.createFromResource(
                 this, R.array.soil_textures, android.R.layout.simple_spinner_item
@@ -85,6 +103,7 @@ public class SoilPlanning extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View view, int position, long id) {
                 selectedSoil = parentView.getItemAtPosition(position).toString();
+                inputSoilType.setText(selectedSoil);
             }
 
             @Override
@@ -103,6 +122,7 @@ public class SoilPlanning extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View view, int position, long id) {
                 selectedPhLevel = parentView.getItemAtPosition(position).toString();
+                inPhLevel.setText(selectedPhLevel);
             }
 
             @Override
@@ -116,7 +136,7 @@ public class SoilPlanning extends AppCompatActivity {
         CropPlanting getTimeMethod = new CropPlanting();
 
         String accessUserID = accessUserID();
-        String getCurrentTime = getTimeMethod.getCurrentTime();
+    //    String getCurrentTime = getTimeMethod.getCurrentTime();
         String reportId = generateReportId();
 
         // Create a map to store the input values
@@ -127,7 +147,7 @@ public class SoilPlanning extends AppCompatActivity {
         reportMap.put("userID", accessUserID);
         reportMap.put("reportID", reportId);
         reportMap.put("Wetting Cycle", getWettingCycle.getText().toString());
-        reportMap.put("DateTimeReported", getCurrentTime);
+     //   reportMap.put("DateTimeReported", getCurrentTime);
 
 
         // Generate a report ID

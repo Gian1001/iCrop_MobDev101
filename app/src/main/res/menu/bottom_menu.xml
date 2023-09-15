@@ -22,8 +22,8 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/notifTab"
-        android:title="Notifications"
+        android:id="@+id/otherReportsTab"
+        android:title="Community Reports"
         android:icon="@drawable/baseline_notifications_24"/>
     <item
         android:layout_width="wrap_content"

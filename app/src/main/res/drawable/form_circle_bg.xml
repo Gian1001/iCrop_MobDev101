@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Shape 1: Rounded Corners -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#ffffff" />
+            <stroke
+                android:width="4dp"
+                android:color="#55a935" />
+            <corners android:topLeftRadius="40dp" android:topRightRadius="40dp" />
+        </shape>
+    </item>
+    <item android:width="350dp" android:height="350dp" android:gravity="center_horizontal|bottom"  android:bottom="-150dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFDE59" /> <!-- Change color as needed -->
+        </shape>
+    </item>
+    <item android:width="250dp" android:height="250dp" android:gravity="bottom" android:left="-100dp" android:bottom="-165dp">
+            <shape android:shape="oval">
+                <solid android:color="#55a935" /> <!-- Change color as needed -->
+            </shape>
+    </item>
+    <item android:width="250dp" android:height="250dp"  android:gravity="bottom|right"  android:bottom="-120dp" android:right="-125dp">
+        <shape android:shape="oval">
+            <solid android:color="#55a935" /> <!-- Change color as needed -->
+        </shape>
+    </item>
+
+
+
+</layer-list>

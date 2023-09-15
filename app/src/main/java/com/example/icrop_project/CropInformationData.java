@@ -1,6 +1,8 @@
 package com.example.icrop_project;
 
-public class CropInformationData {
+import java.io.Serializable;
+
+public class CropInformationData implements Serializable {
 
     String description, end_date, name, soil_type, start_date, sunlight, temperature, type,watering;
 

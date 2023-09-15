@@ -2,6 +2,8 @@ package com.example.icrop_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +15,7 @@ import com.example.icrop_project.CropPlanting;
 import com.example.icrop_project.R;
 
 public class ManageFragment extends Fragment {
-
-    private ImageButton manageSoilButton, manageCropButton; // Declare the Button
+    private CardView manageCropButton, manageSoilButton;// Declare the CardButton
 
     public ManageFragment() {
         // Required empty public constructor
@@ -47,7 +48,6 @@ public class ManageFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return view;
     }
 }

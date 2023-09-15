@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/formCropPlant"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@drawable/form_circle_bg"
+        android:layout_margin="16dp"
+        android:padding="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:text="Crop Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="30sp"
+            android:textColor="#55a935"
+            android:layout_marginStart="70dp"
+            />
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".CropInfoDetailActivity">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crop Name : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/cropNameInfoDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Soil Type : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/soilInfoDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Planting Month : "
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/datePlantedInfoDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harvest Date : "
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/dateHarvestInfoDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Watering Cycle : "
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/waterCycleInfoDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crop Type: "
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/cropTypeInfoDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart = "10dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temperature : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/temperatureCropDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunlight : "
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/sunlightCropDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description : "
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/descriptionCropDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test"
+                android:justificationMode="inter_word"                android:fontFamily="@font/poppins_regular"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/secondary_yellow"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="3dp"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="3dp"
+            android:text="Go Back"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

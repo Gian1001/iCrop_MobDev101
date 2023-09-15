@@ -104,7 +104,6 @@ public class Registration extends AppCompatActivity {
 
                 Intent otpIntent = new Intent(Registration.this, OTPpage.class);
 
-
                 startActivityForResult(otpIntent, OTP_REQUEST_CODE);
 
             }

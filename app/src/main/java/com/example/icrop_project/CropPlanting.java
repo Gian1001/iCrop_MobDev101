@@ -6,7 +6,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,7 +21,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,56 +36,55 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.time.LocalTime;
-
 
 public class CropPlanting extends AppCompatActivity {
-/*works pero wala pa validation especially sa date
-to add din yung editText for others,
-then dialog once oks na yung account
-*/
 
     private DatePickerDialog plantingDatePickerDialog, harvestDatePickerDialog;
-    private Button dateButton, harvestButton, submitButton, addImageButton;
-    private ImageView getImage;
+    private Button dateButton, submitButton, btnChooseImg;
+    private TextInputEditText harvestButton, inputCropType, plantingButton;
     private Spinner spinnerCrops;
     private String selectedCropType;
+    private String selectedImageUrl;
+    private Uri selectedImageUri;
+
+
     private int selectedButtonId;
+    private ImageView imageViewChooseImg;
+    private static final int PICK_IMAGE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_planting);
+        FirebaseApp.initializeApp(this);
 
         // Initialize views and set adapters
         initializeViews();
 
         // Initialize date picker
-        // Initialize date picker for planting date
         initDatePicker(R.id.plantingButton);
         initDatePicker(R.id.harvestDate);
-
     }
-
 
     private void initializeViews() {
         // Initialize and set listeners for buttons
-        dateButton = findViewById(R.id.plantingButton);
-        dateButton.setText(getTodaysDate());
+        plantingButton = findViewById(R.id.plantingButton);
+        plantingButton.setText(getTodaysDate());
 
         harvestButton = findViewById(R.id.harvestDate);
         harvestButton.setText(getTodaysDate());
+
 
         submitButton = findViewById(R.id.submitPlantReport);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String selectedCrop = spinnerCrops.getSelectedItem().toString();
-                String getPlantedDate = dateButton.getText().toString();
+                String getPlantedDate = plantingButton.getText().toString();
                 String getSoilDate = harvestButton.getText().toString();
 
                 if (selectedCrop.equals("Select Crop Type")) {
-                    Toast.makeText(getApplicationContext(), "Please select a soil type", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please select a crop type", Toast.LENGTH_SHORT).show();
                 } else if (getSoilDate.equals(getTodaysDate())) {
                     Toast.makeText(getApplicationContext(), "Please input correct soil rotation date", Toast.LENGTH_SHORT).show();
                 } else {
@@ -95,10 +104,31 @@ then dialog once oks na yung account
             @Override
             public void onItemSelected(AdapterView<?> parentView, View view, int position, long id) {
                 selectedCropType = parentView.getItemAtPosition(position).toString();
+                inputCropType.setText(selectedCropType);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        //spinner trigger
+        inputCropType = findViewById(R.id.inputCropType);
+        inputCropType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinnerCrops.performClick();
+            }
+        });
+
+        //show gallery delete if panget
+        imageViewChooseImg = findViewById(R.id.imageViewChooseImg);
+        btnChooseImg = findViewById(R.id.btnChooseImg);
+
+        btnChooseImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
             }
         });
     }
@@ -112,26 +142,82 @@ then dialog once oks na yung account
     }
 
     private void pushInputs() {
-
         String getUserID = accessUserID();
         String reportId = generateReportId();
-        String getTimeReported = getCurrentTime();
+        String getTimeReported = getCurrentDateTime();
 
+        // Check if an image is selected
+        if (selectedImageUri != null) {
+            // Upload the selected image to Firebase Storage
+            uploadImageToStorage(reportId, getUserID, getTimeReported);
+        } else {
+            // If no image is selected, continue with other data
+            pushDataWithoutImage(reportId, getUserID, getTimeReported);
+        }
+    }
 
+    private void uploadImageToStorage(final String reportId, final String userID, final String timeReported) {
+        // Create a reference to the Firebase Storage location where you want to store the image
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images/" + reportId);
+
+        // Upload the image to Firebase Storage
+        storageRef.putFile(selectedImageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get the download URL of the uploaded image
+                        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                // Image URL
+                                selectedImageUrl = uri.toString();
+
+                                // Continue to push other data to the Realtime Database
+                                pushDataWithImage(reportId, userID, timeReported);
+                            }
+                        });
+                    }
+                });
+    }
+
+    private void pushDataWithImage(final String reportId, String userID, String timeReported) {
+        // Create a map to store the input values including the image URL
         Map<String, Object> reportMap = new HashMap<>();
         reportMap.put("CropType", selectedCropType);
         reportMap.put("datePlanted", harvestButton.getText().toString());
-        reportMap.put("dateHarvest", dateButton.getText().toString());
-        reportMap.put("userID", getUserID.toString());
+        reportMap.put("dateHarvest", plantingButton.getText().toString());
+        reportMap.put("userID", userID);
         reportMap.put("reportID", reportId);
-        reportMap.put("DateTimeReported", getTimeReported);
+        reportMap.put("DateTimeReported", timeReported);
+        reportMap.put("ImageUrl", selectedImageUrl); // Store the image URL
 
+        // Push the input values to the Firebase Realtime Database
+        FirebaseDatabase.getInstance().getReference().child("CropPlanner").child(reportId).setValue(reportMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Intent intent = new Intent(CropPlanting.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+    }
+
+    private void pushDataWithoutImage(final String reportId, String userID, String timeReported) {
+        // Create a map to store the input values without the image URL
+        Map<String, Object> reportMap = new HashMap<>();
+        reportMap.put("CropType", selectedCropType);
+        reportMap.put("datePlanted", harvestButton.getText().toString());
+        reportMap.put("dateHarvest", plantingButton.getText().toString());
+        reportMap.put("userID", userID);
+        reportMap.put("reportID", reportId);
+        reportMap.put("DateTimeReported", timeReported);
 
         FirebaseDatabase.getInstance().getReference().child("CropPlanner").child(reportId).setValue(reportMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Intent intent = new Intent(CropPlanting.this, MainActivity.class); // Use CropPlanting.this as the first argument
+                        Intent intent = new Intent(CropPlanting.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -140,13 +226,13 @@ then dialog once oks na yung account
 
 
     private void initDatePicker(final int buttonId) {
-        final Button dateButton = findViewById(buttonId);
-        final DatePickerDialog datePickerDialog; // Declare as final
+        final View dateView = findViewById(buttonId);
+        final DatePickerDialog datePickerDialog;
 
         // Initialize datePickerDialog directly
         datePickerDialog = createDatePickerDialog(buttonId);
 
-        dateButton.setOnClickListener(new View.OnClickListener() {
+        dateView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 datePickerDialog.show();
@@ -162,7 +248,7 @@ then dialog once oks na yung account
                 month = month + 1;
                 String date = makeDateString(day, month, year);
 
-                Button selectedButton = findViewById(selectedButtonId);
+                TextInputEditText selectedButton = findViewById(selectedButtonId);
                 selectedButton.setText(date);
             }
         };
@@ -181,6 +267,8 @@ then dialog once oks na yung account
         return datePickerDialog;
     }
 
+
+
     private String makeDateString(int day, int month, int year) {
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         if (month >= 1 && month <= 12) {
@@ -188,6 +276,11 @@ then dialog once oks na yung account
         }
         return "Jan" + " " + day + " " + year;
     }
+
+
+//    public void openDatePicker(View view) {
+//        datePickerDialog.show();
+//    }
 
     public static String generateReportId() {
 
@@ -201,16 +294,36 @@ then dialog once oks na yung account
         return timestamp + String.format("%04d", randomNumber);
     }
 
-    public String getCurrentTime() {
-        // Get the current time
+    private void openGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, PICK_IMAGE);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            imageViewChooseImg.setImageURI(imageUri); // Set the image in ImageView
+
+            // Save the selected image URI for later use in uploadImageToStorage
+            selectedImageUri = imageUri;
+        }
+    }
+
+    public String getCurrentDateTime() {
+        // Get the current date and time
         Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Note: Month is zero-based, so add 1
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hour = calendar.get(Calendar.HOUR_OF_DAY); // 24-hour format
         int minute = calendar.get(Calendar.MINUTE);
 
-        // Format the time as "HH:MM"
-        String formattedTime = String.format("%02d:%02d", hour, minute);
+        // Format the date and time as "YYYY-MM-DD HH:MM"
+        String formattedDateTime = String.format("%04d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
 
-        return formattedTime;
+        return formattedDateTime;
     }
 
     private String accessUserID(){

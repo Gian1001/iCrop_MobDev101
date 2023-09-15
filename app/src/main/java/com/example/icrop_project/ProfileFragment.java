@@ -27,6 +27,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ProfileFragment extends Fragment {
 
@@ -49,12 +51,16 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         recyclerView = view.findViewById(R.id.reportList);
 
+
+
         String userID = accessUserID();
-        databaseReference  = FirebaseDatabase.getInstance().getReference("CropPlanner");
+        databaseReference = FirebaseDatabase.getInstance().getReference("CropPlanner");
         Query userQuery = databaseReference.orderByChild("userID").equalTo(userID);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        recyclerView.setItemAnimator(null);
 
         cropList = new ArrayList<>();
         cropAdapter = new CropListAdapter(requireContext(), cropList);
@@ -63,16 +69,27 @@ public class ProfileFragment extends Fragment {
         userQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                cropList.clear(); // Clear the list before adding sorted items
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     CropData cropChildrenVal = dataSnapshot.getValue(CropData.class);
                     cropList.add(cropChildrenVal);
                 }
+                Collections.sort(cropList, new Comparator<CropData>() {
+                    @Override
+                    public int compare(CropData crop1, CropData crop2) {
+                        // Compare reportIDs as strings in descending order
+                        return crop2.getReportID().compareTo(crop1.getReportID());
+                    }
+                });
+
                 cropAdapter.notifyDataSetChanged();
+
+                // Sort the list by "reportID" (or any other field you want to sort by)
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle errors here
             }
         });
 
