@@ -35,21 +35,6 @@
             android:name=".CropListDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".IntroSliderMain"
-            android:exported="false" />
-        <activity
-            android:name=".AnimatedSplash"
-            android:exported="false" />
-        <activity
-            android:name=".IntroOne"
-            android:exported="false" />
-        <activity
-            android:name=".IntroTwo"
-            android:exported="false" />
-        <activity
-            android:name=".IntroThree"
-            android:exported="false" />
-        <activity
             android:name=".NotifFragment"
             android:exported="false" />
         <activity
