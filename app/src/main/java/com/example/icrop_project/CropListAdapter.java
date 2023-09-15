@@ -49,8 +49,8 @@ public class CropListAdapter extends RecyclerView.Adapter<CropListAdapter.MyView
 
         CropData list = cropReports.get(position);
         holder.cropType.setText(list.getCropType());
-        holder.reportID.setText(list.getDatePlanted());
-        holder.dateSubmitted.setText(list.getDateHarvest());
+        holder.reportID.setText(list.getReportID());
+        holder.dateSubmitted.setText(list.getDateTimeReported());
 
 
         holder.model = list;

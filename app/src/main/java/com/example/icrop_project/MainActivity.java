@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 swapFragment(new ListFragment());
             } else if (itemId == R.id.manageTab) {
                 swapFragment(new ManageFragment());
+            }else if (itemId == R.id.otherReportsTab) {
+                swapFragment(new NotifFragment());
             } else if (itemId == R.id.profileTab) {
                 swapFragment(new ProfileFragment());
             }

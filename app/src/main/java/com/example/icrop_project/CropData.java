@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 public class CropData implements Serializable {
 
-    String CropType, dateHarvest, datePlanted, dateReportSubmitted, reportID, userID;
+    String CropType, dateHarvest, datePlanted, DateTimeReported, reportID, userID, ImageUrl;
+
+    public String getImageUrl() {
+        return ImageUrl;
+    }
 
     public String getUserID() {
         return userID;
@@ -26,7 +30,6 @@ public class CropData implements Serializable {
         return datePlanted;
     }
 
-    public String getDateReportSubmitted() {
-        return dateReportSubmitted;
-    }
-}
+    public String getDateTimeReported() {
+        return DateTimeReported;
+    }}
