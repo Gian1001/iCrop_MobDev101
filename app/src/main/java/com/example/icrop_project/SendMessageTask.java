@@ -18,8 +18,8 @@ public class SendMessageTask extends AsyncTask<String, Void, String>  {
 
     @Override
     protected String doInBackground(String... params) {
-        String apiUrl = "https://semaphore.co/api/v4/otp";
-        String apiKey = "bdc45e3a5086805d089c6ba42acdb667";
+        String apiUrl = "api url";
+        String apiKey = "api key";
         String otpMessage = "NEVER SHARE YOUR OTP especially on social media and SMS or email links. ";
         String otpValue =  params[0];
         String phoneNumber = params[1];
